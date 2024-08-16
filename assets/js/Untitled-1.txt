@@ -1,0 +1,29 @@
+const fetchCategories = async () => { //Récupère les données des œuvres depuis une API et les stocke dans le tableau categoriesdata//
+  await fetch("http://localhost:5678/api/categories")
+    .then((res) => res.json())
+    .then((promise) => {
+      categoriesData = promise;
+    });
+
+};
+
+const CategoriesDisplay = async () => { //Affiche les œuvres récupérées dans la galerie et la modal en générant du HTML dynamique//
+  await fetchCategories();
+
+
+  document.querySelector('.gallery').innerHTML = CategoriesData.map(
+    (Categories) =>
+      //<div id="Tous" class="button_filters">Tous</div><div id="objets" class="button_filters">Objets</div><div id="appartements" class="button_filters">Appartements</div><div id="hotels" class="button_filters">Hotels & restaurants</div>//
+     <div id="${categories.Id}">1</div>
+		 <div id="${categories.name}">Objets</div>
+  )
+    .join("");
+
+  document.querySelector('.galleryModal').innerHTML = CategoriesData.map(
+    (Categories) =>
+      <div id="${categories.Id}">1</div>
+		 <div id="${categories.name}">Objets</div>
+  )
+    .join("");
+
+};
